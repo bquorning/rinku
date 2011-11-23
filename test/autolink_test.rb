@@ -61,6 +61,13 @@ This is just a test. <a href="http://www.pokemon.com">http://www.pokemon.com</a>
     assert_equal "{link: #{link3_result}}", Rinku.auto_link("{link: #{link3_raw}}")
   end
 
+  def test_auto_link_with_single_trailing_punctuation_and_space
+    url = "http://youtube.com"
+    url_result = generate_result(url)
+    assert_equal url_result, Rinku.auto_link(url)
+    assert_equal "link: #{url_result}. foo?", Rinku.auto_link("link: #{url}. foo?")
+  end
+
   def test_auto_link_with_multiple_trailing_punctuations
     url = "http://youtube.com"
     url_result = generate_result(url)
